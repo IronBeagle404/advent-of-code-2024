@@ -1,9 +1,6 @@
-# advent-of-code-2024 #
-
------------
+# advent-of-code-2024
 
 #
-
 
 Not much to say here, I just thought it could be interesting to upload my solutions for this year's Advent Of Code.
 
