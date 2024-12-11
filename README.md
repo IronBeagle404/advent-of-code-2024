@@ -8,6 +8,8 @@ I've never done this kind of challenge before (nor have I sent stuff publicly on
 
 This repo will just contain my code, in the same state it's in when I work on it for the challenge. I have no plan to add anything beyond that.
 
+Day 01 to 04 were done (more or less) on time during the AoC. <br> Day 05, if finished, is based on an incomplete implementation done during the AoC.
+
 <br>
 
 ### All solutions are written in Go
