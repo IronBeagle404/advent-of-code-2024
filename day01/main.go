@@ -46,9 +46,20 @@ func main() {
 
 	file.Close()
 
-	// Sort lists
 	bubbleSort(list1)
 	bubbleSort(list2)
+
+	// Calculate distance
+	distance := 0
+	var diff int
+	for x := 0; x < len(list1); x++ {
+		if list1[x] > list2[x] {
+			diff = list1[x] - list2[x]
+		} else {
+			diff = list2[x] - list1[x]
+		}
+		distance += diff
+	}
 
 	// Calculate similarity score
 	var similarityScore, found, nbr int
@@ -64,7 +75,7 @@ func main() {
 	}
 
 	// Print result
-	fmt.Println(similarityScore)
+	fmt.Printf("Distance between lists is %v\nSimilarity Score is %v\n", distance, similarityScore)
 }
 
 func bubbleSort(array []int) {
