@@ -15,8 +15,9 @@ func main() {
 	}
 	contentStr := string(content)
 
-	// Define a regex corresponding to the correct instruction syntax
-	re := regexp.MustCompile(`mul\(\d*,\d*\)`)
+	// Define a regex corresponding to the correct mul instruction syntax
+	// OR to the do/don't instruction
+	re := regexp.MustCompile(`mul\(\d+,\d+\)|do(n't)?\(\)`)
 
 	// Find all instances of the regex in the input
 	found := re.FindAllString(contentStr, -1)
@@ -32,15 +33,23 @@ func main() {
 	}
 
 	// Identify the two numbers in each instance, multiply them together and add it to the total sum
+	// And respect the do/don't instructions
 	var nbr1, nbr2, instanceRes, totalRes int
+	do := true
 	for _, instance := range found {
-		nbrFound := nbrRe.FindAllString(instance, -1)
-		if nbrFound != nil {
-			nbr1, _ = strconv.Atoi(nbrFound[0])
-			nbr2, _ = strconv.Atoi(nbrFound[1])
-			instanceRes = nbr1 * nbr2
+		if instance == "do()" {
+			do = true
+		} else if instance == "don't()" {
+			do = false
+		} else if do {
+			nbrFound := nbrRe.FindAllString(instance, -1)
+			if nbrFound != nil {
+				nbr1, _ = strconv.Atoi(nbrFound[0])
+				nbr2, _ = strconv.Atoi(nbrFound[1])
+				instanceRes = nbr1 * nbr2
+			}
+			totalRes += instanceRes
 		}
-		totalRes += instanceRes
 	}
 
 	fmt.Printf("Total result is %v\n", totalRes)
